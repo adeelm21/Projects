@@ -1,0 +1,18 @@
+# basic weather app, asking for city and displaying the weather and temperature
+
+import requests as requests
+
+api_key = '144884ee09fe0f9eb6c930ab4f28e680'
+
+city = input("enter city: ")
+
+print(city)
+
+weather_data = requests.get(
+    f'https://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&APPID={api_key}')
+
+weather = weather_data.json()['weather'][0]['main']
+temperature = round(weather_data.json()['main']['temp'])
+
+print(f"the weather in {city} is {weather}")
+print(f"The temperature is {temperature}° Celsius")
